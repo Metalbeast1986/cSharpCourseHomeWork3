@@ -12,7 +12,16 @@ namespace ConsoleGame.GUI
         private Frame _notActiveFrame;
         private Frame _activeFrame;
 
-        private bool _isActive = false;
+        public bool IsActive { get; private set; } = false;
+
+        public string Label
+        {
+            get { return _textLine.Label; }
+            set { _textLine.Label = value; }
+        }
+
+        private string _label = "";
+
         private TextLine _textLine;
 
         public Button(int x, int y, int width, int height, string buttonText) : base(x, y, width, height)
@@ -23,9 +32,11 @@ namespace ConsoleGame.GUI
             _textLine = new TextLine(x + 1, y + 1 + ((height - 2) / 2), width - 2, buttonText);
         }
 
+
+
         public override void Render()
         {
-            if (_isActive)
+            if (IsActive)
             {
                 _activeFrame.Render();
             }
@@ -39,7 +50,7 @@ namespace ConsoleGame.GUI
 
         public void SetActive()
         {
-            _isActive = true;
+            IsActive = true;
         }
     }
 }

@@ -6,26 +6,37 @@ namespace ConsoleGame.GUI
 {
     class TextLine : GuiObject
     {
-        private string _data;
+        private string _label;
 
-        public TextLine(int x, int y, int width, string data) : base(x, y, width, 0)
+        public TextLine(int x, int y, int width, string label) : base(x, y, width, 0)
         {
-            _data = data;
+            label = label;
         }
-
+        public string Label
+        {
+            get
+            {
+                return _label;
+            }
+            set
+            {
+                _label = value;
+                Render();
+            }
+        }
         public override void Render()
         {
             Console.SetCursorPosition(X, Y);
-            if (Width > _data.Length)
+            if (Width > Label.Length)
             {
-                int offset = (Width - _data.Length) / 2;
+                int offset = (Width - Label.Length) / 2;
                 for (int i = 0; i < offset; i++)
                 {
                     Console.Write(' ');
                 }
             }
 
-            Console.Write(_data);
+            Console.Write(Label);
         }
     }
 }
